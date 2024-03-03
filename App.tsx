@@ -1,118 +1,138 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
 import React from 'react';
-import type {PropsWithChildren} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
-
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
-
-function Section({children, title}: SectionProps): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
+import {View, Text, StyleSheet, Image} from 'react-native';
+import colors from './src/theme/color';
+import fonts from './src/theme/fonts';
+import Entypo from 'react-native-vector-icons/Entypo';
+import AntDesign from 'react-native-vector-icons/AntDesign'
+import Ionicons from 'react-native-vector-icons/Ionicons'
+import Feather from 'react-native-vector-icons/Feather'
+const App = () => {
   return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
+    <View style={styles.post}>
+      {/* Header*/ }
+      <View style={styles.header}>
+        <Image source=
+        {{uri:'https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/1.jpg'}} 
+        style={styles.avatar}/>
+        <Text style={styles.userName}>mrskg.33</Text>
+        <Entypo name='dots-three-horizontal' size={16} style={styles.threeDots}/>
+      </View>
+      {/* Content*/ }
+      <Image source=
+      {{uri:'https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/1.jpg',}} 
+      style={styles.image}/>
+      {/* Footer */ }
+      <View style={styles.footer}>
+      <View style={styles.iconContainer}>
+        <AntDesign 
+        name={'hearto'} 
+        size={24} 
+        style={styles.icon}
+        color={colors.black}/>
+        <Ionicons 
+        name="chatbubble-outline"
+        size={24}
+        style={styles.icon}
+        color={colors.black}/>
+        <Feather 
+        name="send"
+        size={24}
+        style={styles.icon}
+        color={colors.black}/>
+        <Feather 
+        name="bookmark"
+        size={24}
+        style={{marginLeft:'auto'}}
+        color={colors.black}/>
+      </View>
+      {/** Likes */}
+      <Text style={styles.text}>Liked By
+        <Text style={styles.bold}> anjal </Text>and 
+        <Text style={{fontWeight: fonts.weight.bold}}> 65 others</Text>
       </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
+      {/* Post Description*/}
+      <Text style={styles.text}>
+        <Text style={styles.bold}>mr.skg.33 </Text>
+        Lorem, ipsum dolor sit amet consectetur 
+        adipisicing elit. A molestias soluta 
+        doloremque magnam quod delectus facilis libero! Culpa, 
+        unde tempore laboriosam explicabo 
+        aut saepe similique laudantium cum soluta omnis debitis!
       </Text>
+      <Text>View all 16 comments</Text>
+      <View style={styles.comment}>
+      <Text style={styles.commentText}>
+        <Text style={styles.bold}>mr.skg.33 </Text>
+        Lorem, ipsum dolor sit amet consectetur 
+        adipisicing elit.
+        </Text>
+        <AntDesign 
+        name={'hearto'} 
+        size={24} 
+        style={styles.icon}
+        color={colors.black}/>
+      </View>
+      {/** Posted date */}
+      <Text>21 January, 2024 </Text>
+      </View>
+      
+
     </View>
   );
-}
-
-function App(): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
-  return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
-  );
-}
+};
 
 const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
+  post: {
   },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
+  image:{
+    width: '100%',
+    aspectRatio: '1'  
   },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
+  header:{
+    flexDirection: 'row',
+    alignItems:'center',
+    padding: 10
   },
-  highlight: {
-    fontWeight: '700',
+  avatar:{
+    width: 50,
+    height:50,
+    borderRadius: 25,
+    marginRight: 10,
   },
-});
+  userName:{
+    fontWeight: fonts.weight.bold,
+    color: colors.black,
+  },
+  threeDots:{
+    marginLeft:'auto'
+  },
+  footer:{
+    padding: 10,
+  },
+  iconContainer:{
+    flexDirection:'row',
+    marginBottom:10,
+  },
+  icon:{
+    marginHorizontal: 5,
+  },
+  text:{
+    color: colors.black,
+    lineHeight: 22
+  },
+  bold:{
+    fontWeight: fonts.weight.bold,
+  },
+  commentText:{
+    color:colors.black,
+    flex:1, 
+    lineHeight: 22,
+  },
+  comment:{
+    flexDirection:'row',
+    alignItems:'center'
+  },
+
+})
 
 export default App;
